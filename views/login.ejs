@@ -1,0 +1,31 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body> -->
+  <%- include("partials/header.ejs") %>
+    <h1>Login</h1>
+    <form action="/login" method="POST">
+    <div class="form-group">
+      <label for="username">Email: </label>
+      <div class="w-50">
+        <input type="email" name="username" placeholder="email" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password: </label>
+      <div class="w-50">
+        <input type="password" name="password" placeholder="email" autocomplete="off" required >
+      </div>
+    </div>
+      
+      <!-- <label for="password">Password: </label>
+      <input type="password" name="password" placeholder="Password" required> -->
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <p>Don't have an account? <a href="/signup">Sign up</a></p>
+</body>
+</html> 
