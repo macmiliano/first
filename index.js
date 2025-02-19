@@ -84,6 +84,13 @@ app.post('/posts', isAuthenticated, async (req, res) => {
     res.redirect('/');
 });
 
+// Delete Post Route
+app.post('/posts/delete/:id', isAuthenticated, async (req, res) => {
+    const { id } = req.params;
+    await db.query('DELETE FROM posts WHERE id = $1 AND user_id = $2', [id, req.session.userId]);
+    res.redirect('/');
+});
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });

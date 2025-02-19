@@ -1,0 +1,19 @@
+# Node.js dependencies
+/node_modules
+
+# Environment variables
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# VS Code settings
+.vscode/
+
+# Optional npm cache directory
+.npm
+
+# Other exclusions
+.DS_Store

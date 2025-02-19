@@ -6,27 +6,26 @@
     <title>Sign Up</title>
 </head>
 <body> -->
-    <%- include("partials/header.ejs") %>
-    <h1>Sign Up</h1>
-    <form action="/signup" method="POST">
-    <div class="form-group">
-      <label for="username">Email: </label>
-      <div class="w-75">
-        <input type="email" name="username" placeholder="email" required>
-      </div>
+  <%- include("partials/header.ejs") %>
+  <h1>Sign Up</h1>
+  <form action="/signup" method="POST">
+  <div class="form-group">
+    <label for="username">Email: </label>
+    <div class="w-75">
+      <input type="email" name="username" placeholder="email" required>
     </div>
-    <div class="form-group">
-      <label for="password">Password: </label>
-      <div class="w-75">
-        <input type="password" name="password" placeholder="password" autocomplete="off" required >
-      </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password: </label>
+    <div class="w-75">
+      <input type="password" name="password" placeholder="password" autocomplete="off" required >
     </div>
-      
-      <!-- <label for="password">Password: </label>
-      <input type="password" name="password" placeholder="Password" required> -->
-      <button type="submit" class="btn btn-primary">Sign Up</button>
-    </form>
-    <p>Already have an account? <a href="/login">login</a></p>
-
+  </div>
+    
+    <!-- <label for="password">Password: </label>
+    <input type="password" name="password" placeholder="Password" required> -->
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+  </form>
+  <p>Already have an account? <a href="/login">login</a></p>
 </body>
 </html>

@@ -7,66 +7,69 @@
 </head>
 <body> -->
     
-  <%- include("partials/header.ejs") %>
-        <h1>Dashboard</h1>
-        <form action="/posts" method="POST">
-            <div class="form-group">
-                <input class="form-control" type="text" name="title" placeholder="Title" required>
-                <textarea class="form-control" name="content" placeholder="Content" required></textarea>
-            </div>
-            <button class="btn btn-primary" type="submit">Create Post</button>
-        </form>
-        <h2>Your Posts</h2>
-        <ul>
-            <% posts.forEach(post => { %>
-                <li>
-                    <h3><%= post.title %></h3>
-                    <p>
-                        <span class="truncated-content"><%= post.content.length > 100 ? post.content.substring(0, 100) + '...' : post.content %></span>
-                        <span class="hidden-content"><%= post.content.length > 100 ? post.content.substring(100) : '' %></span>
-                        <% if (post.content.length > 100) { %>
-                            <a href="#" class="read-more">Read more</a>
-                        <% } %>
-                    </p>
-                    <small class="post-date" data-date="<%= post.created_at %>"></small>
-                </li>
-            <% }) %>
-        </ul>
-        
-        <script>
-            // Format date and time
-            document.querySelectorAll('.post-date').forEach(element => {
-                const date = new Date(element.getAttribute('data-date'));
-                const formattedDate = date.toLocaleString('en-US', {
-                    weekday: 'long',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-                element.textContent = formattedDate;
-            });
-        
-            // Handle "Read more" functionality
-            document.querySelectorAll('.read-more').forEach(link => {
-                link.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    const truncatedContent = link.previousElementSibling.previousElementSibling;
-                    const hiddenContent = link.previousElementSibling;
-        
-                    // Toggle between truncated and full content
-                    if (hiddenContent.style.display === 'none') {
-                        hiddenContent.style.display = 'inline';
-                        truncatedContent.style.display = 'none';
-                        link.textContent = 'read more';
-                    } else {
-                        hiddenContent.style.display = 'none';
-                        truncatedContent.style.display = 'inline';
-                        link.textContent = 'read less';
-                    }
-                });
-            });
-        </script>
+    <%- include("partials/header.ejs") %>
+    <h1>Dashboard</h1>
+    <form action="/posts" method="POST">
+        <div class="form-group">
+            <input class="form-control" type="text" name="title" placeholder="Title" required>
+            <textarea class="form-control" name="content" placeholder="Content" required></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Create Post</button>
+    </form>
+    <h2>Your Posts</h2>
+    <ul>
+        <% posts.forEach(post => { %>
+            <li>
+                <h3><%= post.title %></h3>
+                <p>
+                    <span class="truncated-content"><%= post.content.length > 100 ? post.content.substring(0, 100) + '...' : post.content %></span>
+                    <span class="hidden-content"><%= post.content.length > 100 ? post.content.substring(100) : '' %></span>
+                    <% if (post.content.length > 100) { %>
+                        <a href="#" class="read-more">Read more</a>
+                    <% } %>
+                </p>
+                <small class="post-date" data-date="<%= post.created_at %>"></small>
+                <form action="/posts/delete/<%= post.id %>" method="POST">
+                    <button type="submit" class="btn btn-outline-danger" data-toggle="tooltip">Delete</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
     
-    </body>
+    <script>
+        // Format date and time
+        document.querySelectorAll('.post-date').forEach(element => {
+            const date = new Date(element.getAttribute('data-date'));
+            const formattedDate = date.toLocaleString('en-US', {
+                weekday: 'long',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            element.textContent = formattedDate;
+        });
+    
+        // Handle "Read more" functionality
+        document.querySelectorAll('.read-more').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const truncatedContent = link.previousElementSibling.previousElementSibling;
+                const hiddenContent = link.previousElementSibling;
+    
+                // Toggle between truncated and full content
+                if (hiddenContent.style.display === 'none') {
+                    hiddenContent.style.display = 'inline';
+                    truncatedContent.style.display = 'none';
+                    link.textContent = 'read more';
+                } else {
+                    hiddenContent.style.display = 'none';
+                    truncatedContent.style.display = 'inline';
+                    link.textContent = 'read less';
+                }
+            });
+        });
+    </script>
+
+</body>
 </html>
 
 
